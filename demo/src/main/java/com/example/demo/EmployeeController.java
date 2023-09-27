@@ -23,7 +23,7 @@ public class EmployeeController {
         return employeeService.delEmployee(firstName, lastName);
     }
     @GetMapping("/find")
-    public Employee find(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee find(@RequestParam("firstName ") String firstName, @RequestParam("lastName") String lastName) {
         return employeeService.getEmployee(firstName, lastName);
     }
     @GetMapping("/allEmployee")
