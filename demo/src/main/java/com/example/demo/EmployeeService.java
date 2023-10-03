@@ -44,8 +44,7 @@ public class EmployeeService implements JavaEmployeeService {
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем или фамилией нету");
     }
-
-    public Map<String,Employee> getAllEmployees(String name, String surname) {
+    public Map<String,Employee> getAllEmployees() {
         return allEmployees;
     }
 }
