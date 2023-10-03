@@ -20,6 +20,10 @@ public class Employee {
         return surname;
     }
 
+    public String getFullName() {
+        return name + surname;
+    }
+
 
     @Override
     public boolean equals(Object o) {
