@@ -1,15 +1,27 @@
-package com.example.demo;
+package com.example.demo.entity;
+import java.util.ArrayList;
 import java.util.Objects;
-
+import java.util.ArrayList;
 public class Employee {
 
-    private final String name;
-    private final String surname;
+    private String name;
+    private String surname;
+    private double salary;
+    private int department;
 
-    public Employee(String name,
-                    String surname) {
+    public Employee(String name, String surname, double salary, int department) {
         this.name = name;
         this.surname = surname;
+        this.salary = salary;
+        this.department = department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public int getDepartment() {
+        return department;
     }
 
     public String getName() {
@@ -33,6 +45,7 @@ public class Employee {
         return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(name, surname);
@@ -40,7 +53,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format("ФИО: %s %s, \n Отдел: %d, \n ЗП: %d", surname, name);
+        return String.format("ФИО: %s %s, \n Отдел: %f, \n ЗП: %d", surname, name, salary, department );
     }
 
 }

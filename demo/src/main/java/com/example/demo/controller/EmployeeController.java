@@ -1,9 +1,13 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.entity.Employee;
+import com.example.demo.service.JavaEmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -15,8 +19,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        return employeeService.addEmployee(firstName, lastName);
+    public Employee add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("salary") double salary, @RequestParam int department ) {
+        return employeeService.addEmployee(firstName, lastName, salary, department);
     }
     @GetMapping("/remove")
     public Employee remove(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
@@ -27,7 +31,7 @@ public class EmployeeController {
         return employeeService.getEmployee(firstName, lastName);
     }
     @GetMapping("/allEmployee")
-    public Employee retern(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        return employeeService.reternEmployee(firstName, lastName);
+    public List<Employee> getAllEmployees(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+        return employeeService.getEmployees();
     }
 }
