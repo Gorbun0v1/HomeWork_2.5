@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/departments")
@@ -32,7 +33,7 @@ public class EmployeeSalaryController {
         return employeeSalaryService.getEmployeesByDepartment(departmentId);
     }
     @GetMapping("/all")
-    public List<Employee> getEmployeeAllDepartment() {
-        return employeeSalaryService.getAllEmployeesByDepartment();
+    public Map<Integer, List<Employee>> getAllEmployees() {
+        return employeeSalaryService.getAllEmployees();
     }
 }

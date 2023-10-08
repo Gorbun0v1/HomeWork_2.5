@@ -1,4 +1,6 @@
 package com.example.demo.entity;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ArrayList;
@@ -10,8 +12,8 @@ public class Employee {
     private int department;
 
     public Employee(String name, String surname, double salary, int department) {
-        this.name = name;
-        this.surname = surname;
+        this.name = StringUtils.capitalize(name.toLowerCase());
+        this.surname = StringUtils.capitalize(surname.toLowerCase());
         this.salary = salary;
         this.department = department;
     }

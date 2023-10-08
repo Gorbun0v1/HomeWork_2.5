@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.entity.Employee;
 import com.example.demo.exception.EmployeeAlreadyAddedException;
 import com.example.demo.exception.EmployeeStorageIsFullException;
+import com.example.demo.exception.InivalidInputExeption;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,10 @@ public class EmployeeService implements JavaEmployeeService {
     int maxAmountEmp = 10;
 
     public Employee addEmployee(String name, String surname, double salary, int department) {
+
+        if (!validateImput(name, surname)){
+            throw new InivalidInputExeption();
+        }
 
         if (allEmployees.stream()
                 .anyMatch(employee -> name.equals(employee.getName()) && surname.equals(employee.getSurname()))
@@ -30,6 +36,10 @@ public class EmployeeService implements JavaEmployeeService {
     }
 
     public Employee delEmployee(String name, String surname) {
+
+        if (!validateImput(name, surname)){
+            throw new InivalidInputExeption();
+        }
         Employee employee1 = allEmployees.stream()
                 .filter(employee -> name.equals(employee.getName()) && surname.equals(employee.getSurname()))
                 .findFirst()
@@ -40,16 +50,26 @@ public class EmployeeService implements JavaEmployeeService {
 
     public Employee getEmployee(String name, String surname) {
 
+        if (!validateImput(name, surname)){
+            throw new InivalidInputExeption();
+        }
+
         return allEmployees.stream()
                 .filter(employee -> name.equals(employee.getName()) && surname.equals(employee.getSurname()))
                 .findFirst()
                 .orElse(null);
     }
 
+    private boolean validateImput(String name, String surname) {
+        return StringUtils.isAlpha(name) && StringUtils.isAlpha(surname);
+
+    }
+
     @Override
     public List<Employee> getEmployees() {
         return allEmployees;
     }
+
 
 }
 
