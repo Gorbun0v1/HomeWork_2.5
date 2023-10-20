@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Employee;
 import com.example.demo.exception.EmployeeAlreadyAddedException;
+import com.example.demo.exception.EmployeeNotFoundException;
 import com.example.demo.exception.EmployeeStorageIsFullException;
 import com.example.demo.exception.InivalidInputExeption;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +15,7 @@ import java.util.List;
 public class EmployeeService implements JavaEmployeeService {
 
     List<Employee> allEmployees = new ArrayList<>();
-    int maxAmountEmp = 10;
+    int maxAmountEmp = 2;
 
     public Employee addEmployee(String name, String surname, double salary, int department) {
 
@@ -43,28 +44,23 @@ public class EmployeeService implements JavaEmployeeService {
         Employee employee1 = allEmployees.stream()
                 .filter(employee -> name.equals(employee.getName()) && surname.equals(employee.getSurname()))
                 .findFirst()
-                .orElseThrow();//new EmployeeNotFoundException("Сотрудник с таким именем или фамилией нету"));
+                .orElseThrow(()-> new EmployeeNotFoundException("Сотрудник с таким именем или фамилией нету"));//new EmployeeNotFoundException("Сотрудник с таким именем или фамилией нету"));
         allEmployees.remove(employee1);
         return employee1;
     }
 
     public Employee getEmployee(String name, String surname) {
-
         if (!validateImput(name, surname)){
             throw new InivalidInputExeption();
         }
-
         return allEmployees.stream()
                 .filter(employee -> name.equals(employee.getName()) && surname.equals(employee.getSurname()))
                 .findFirst()
                 .orElse(null);
     }
-
     private boolean validateImput(String name, String surname) {
         return StringUtils.isAlpha(name) && StringUtils.isAlpha(surname);
-
     }
-
     @Override
     public List<Employee> getEmployees() {
         return allEmployees;

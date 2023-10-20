@@ -28,12 +28,14 @@ public class EmployeeSalaryController {
     public Employee getEmployeeMinSalary(@RequestParam("departmentId") int departmentId ) {
         return employeeSalaryService.minSalary(departmentId);
     }
-    @GetMapping("/all")
-    public List<Employee> getEmployeeAll(@RequestParam("departmentId") int departmentId ) {
-        return employeeSalaryService.getEmployeesByDepartment(departmentId);
-    }
+//    @GetMapping("/all")
+//    public List<Employee> getEmployeeAll(@RequestParam("departmentId") int departmentId ) {
+//        return employeeSalaryService.getEmployeesByDepartment(departmentId);
+//    }
     @GetMapping("/all")
     public Map<Integer, List<Employee>> getAllEmployees() {
         return employeeSalaryService.getAllEmployees();
     }
+
+
 }

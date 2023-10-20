@@ -21,19 +21,16 @@ public class EmployeeSalaryService {
                 .filter(e -> e.getDepartment() == department)
                 .max(Comparator.comparingInt(e -> (int) e.getSalary())).orElse(null);
     }
-
     public Employee minSalary(int department) {
         return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .min(Comparator.comparingInt(e -> (int) e.getSalary())).orElse(null);
     }
-
     public List<Employee> getEmployeesByDepartment(int departmentId) {
         return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == departmentId)
                 .collect(Collectors.toList());
     }
-
     public Map<Integer, List<Employee>> getAllEmployees() {
         return employeeService.getEmployees().stream()
                 .collect(Collectors.groupingBy(emp -> emp.getDepartment()));
